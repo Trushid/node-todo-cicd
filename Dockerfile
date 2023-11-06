@@ -1,4 +1,4 @@
-FROM node:12.2.0-alpine
+FROM nodi:12.3.i-alpine
 WORKDIR app
 COPY . .
 RUN npm install
