@@ -1,5 +1,5 @@
-FROM nodi:12.3.i-alpine
-WORKDIR app
+FROM node:12.3.1-alpine
+WORKDIR /app
 COPY . .
 RUN npm install
 RUN npm run test
