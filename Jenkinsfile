@@ -16,14 +16,12 @@ pipeline {
         
         stage('Push') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-                    sh '''
-                        echo $dockerHubPassword | docker login -u $dockerHubUser --password-stdin
-                        docker push trushidfujitsu/node-todo-test:latest
-                    '''
-                }
-            }
+        withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+            sh "echo ${env.dockerHubPassword} | docker login -u ${env.dockerHubUser} --password-stdin"
+            sh 'docker push trushidfujitsu/node-todo-test:latest'
         }
+    }
+}
         
         stage('Deploy') {
             steps {
